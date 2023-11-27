@@ -1,0 +1,163 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <title>Sports Court Reservation</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="">
+  <meta property="og:type" content="">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="">
+
+  <link rel="manifest" href="../site.webmanifest">
+  <link rel="apple-touch-icon" href="../icon.png">
+  <!-- Place favicon.ico in the root directory -->
+
+  <link rel="stylesheet" href="../css/normalize.css">
+  <link rel="stylesheet" href="../css/main.css">
+
+  <meta name="theme-color" content="#fafafa">
+  <style>
+    /* Add your CSS styles here */
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      background-color: #333;
+      color: white;
+      padding: 10px;
+    }
+    .navbar img {
+      width: 200px;
+      height: auto;/* Adjust as necessary for your logo */
+    }
+
+    .navbar a {
+      color: white;
+      padding: 8px 16px;
+      text-decoration: none;
+      transition: background-color 0.3s;
+      border: 2px solid transparent; /* Adds a transparent border to maintain layout on hover */
+    }
+    .navbar a:hover {
+      background-color: #ddd;
+      color: black;
+      border: 2px solid #333; /* Adds a border on hover */
+    }
+    .navbar .button {
+      background-color: #f2f2f2;
+      color: #333;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+    .navbar .button.sign-up {
+      background-color: #4CAF50; /* Green background for sign up */
+      color: white;
+    }
+    .navbar .button.log-in {
+      background-color: #555; /* Darker background for log in */
+      color: white;
+    }
+    .hero {
+      background: url('../img/sportscenter-02.png') no-repeat center center;
+      background-size: cover;
+      color: white;
+      text-align: center;
+      padding: 50px;
+    }
+    .court-list {
+      display: flex;
+      justify-content: space-around;
+      padding: 20px;
+    }
+    .court-item {
+      width: 30%;
+      text-align: center;
+    }
+    .court-item a {
+      text-decoration: none;
+      color: inherit; /* Keeps the text color the same as the text outside the link */
+    }
+    .court-item img {
+      width: 100%; /* Makes the image responsive to the container width */
+      cursor: pointer; /* Changes the cursor to indicate it's clickable */
+      height: 200px; /* Set a fixed height for all images */
+      object-fit: cover; /* This will cover the area without distorting the aspect ratio */
+      border-radius: 8px; /* Optional: Adds rounded corners to the images */
+    }
+
+    .join-game {
+      background-color: #f2f2f2;
+      padding: 20px;
+    }
+    .footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="navbar">
+  <img src="../img/UUM_logo.png" alt="Logo">
+  <div>
+    <a href="signup_page.html" style="color: white; padding: 0 10px;">Sign Up</a>
+    <a href="login_page.html" style="color: white; padding: 0 10px;">Log In</a>
+  </div>
+</div>
+
+<div class="hero">
+  <h1>BOOK YOUR SPORT COURT ONLINE</h1>
+</div>
+
+<div class="court-list">
+  <div class="court-item">
+    <a href="badmintoncourt_page.html">
+      <img src="../img/badminton.png" alt="Badminton Court">
+      <p>Badminton</p>
+    </a>
+  </div>
+  <div class="court-item">
+    <a href="tenniscourt_page.html">
+      <img src="../img/tennis.png" alt="Tennis Court">
+      <p>Tennis</p>
+    </a>
+  </div>
+  <div class="court-item">
+    <a href="squashcourt_page.html">
+      <img src="../img/Squash.png" alt="Squash Court">
+      <p>Squash</p>
+    </a>
+  </div>
+</div>
+
+<div class="join-game">
+  <h2>Join game with others!</h2>
+  <!-- Add game joining options here -->
+</div>
+
+<div class="footer">
+  <p>Contact information and social media links</p>
+</div>
+
+  <script src="../js/vendor/modernizr-3.11.2.min.js"></script>
+  <script src="../js/plugins.js"></script>
+  <script src="../js/main.js"></script>
+
+  <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+  <script>
+    window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
+    ga('create', 'UA-XXXXX-Y', 'auto'); ga('set', 'anonymizeIp', true); ga('set', 'transport', 'beacon'); ga('send', 'pageview')
+  </script>
+  <script src="https://www.google-analytics.com/analytics.js" async></script>
+</body>
+
+</html>

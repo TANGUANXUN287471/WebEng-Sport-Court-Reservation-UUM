@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Sports Court Reservation</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body, html {
+      height: 100%;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+    .login-container {
+      display: flex;
+      height: 100vh;
+    }
+    .login-image {
+      flex: 1;
+      background: url('img/pusatsukan.png') no-repeat center center;
+      background-size: cover;
+    }
+    .login-form-container {
+      flex: 1;
+      padding: 50px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .login-form {
+      max-width: 300px;
+      margin: auto;
+    }
+    input[type=text], input[type=password] {
+      width: 100%;
+      padding: 15px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+    .login-btn {
+      background-color: #ffcc00; /* Yellow background color */
+      color: white;
+      padding: 14px 20px;
+      margin: 10px 0;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+    }
+    .login-btn:hover {
+      opacity: 0.8;
+    }
+    .form-footer {
+      color: #777;
+      text-align: center;
+    }
+    .form-footer a {
+      color: #ffcc00; /* Yellow color to match the button */
+      text-decoration: none;
+    }
+    .checkbox-container {
+      margin-bottom: 15px;
+    }
+    .checkbox {
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="login-container">
+  <div class="login-image"></div>
+  <div class="login-form-container">
+    <form class="login-form">
+      <h2>Log in</h2>
+      <p>Sign in to book sports courts and join games</p>
+      <label for="username">Enter your username</label>
+      <input type="text" id="username" name="username" required>
+
+      <label for="password">Enter your password</label>
+      <input type="password" id="password" name="password" required>
+
+      <div class="checkbox-container">
+        <input type="checkbox" id="remember-me" class="checkbox">
+        <label for="remember-me">Remember me</label>
+      </div>
+
+      <button type="submit" class="login-btn">Log in</button>
+
+      <div class="form-footer">
+        <a href="#">Forgot your password?</a><br>
+        Don't have an account yet? <a href="#">Sign up</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+</body>
+</html>
