@@ -119,13 +119,9 @@
 
     /* Court Details container */
     .court-details-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px;
-      background-color: #f0f0f0;
-      border-radius: 8px;
-      box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+      display: grid;
+      grid-template-columns: 1fr 1fr; /* Two columns with equal width */
+      gap: 20px; /* Add some gap between columns for spacing */
     }
 
     /* Court Image styles */
@@ -151,18 +147,29 @@
       transform: scale(1.1); /* Add a zoom effect on hover */
     }
 
-    /* Court Introduction styles */
     .court-introduction {
-      flex: 2;
-      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       background-color: #fff;
+      padding: 20px;
       border-radius: 8px;
       box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     }
 
+    .court-introduction h3 {
+      font-size: 24px;
+      color: #333; /* Dark text color */
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
     .court-introduction p {
       font-size: 16px;
-      color: #333;
+      color: #555; /* Slightly darker text color for contrast */
+      text-align: center;
+      line-height: 1.6;
     }
 
 
@@ -170,16 +177,92 @@
     ul {
       list-style-type: disc;
       margin-left: 20px;
+      text-align: left;
     }
 
-    /* Footer styles */
+    li {
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+
     footer {
       background-color: #333; /* Dark background color for the footer */
       color: #fff; /* White text color for the footer */
       text-align: center;
-      padding: 10px 0;
+      padding: 20px 0;
     }
 
+    footer p {
+      margin: 0;
+      font-size: 16px;
+    }
+
+    /* Optional: Add some styles for links in the footer */
+    footer a {
+      color: #fff;
+      text-decoration: underline;
+    }
+
+    footer a:hover {
+      color: #ffcc00; /* Change the color on hover */
+    }
+    #booking-form {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 20px;
+      margin-top: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+
+    input,
+    select,
+    button {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    #booking-status {
+      margin-top: 20px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .rules-image-container {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 20px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .rules-image {
+      max-width: 45%; /* Adjust the percentage to control the size */
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    }
   </style>
 </head>
 <body>
@@ -192,25 +275,9 @@
   <a href="index.html">Home</a>
   <a href="#court-details">Court Details</a>
   <a href="#announcements">Announcements</a>
-  <a href="#court-availability">Court Availability</a>
   <a href="#booking">Booking</a>
   <a href="#rules">Rules & Regulations</a>
 </nav>
-
-<section id="court-details">
-  <h2>Court Details</h2>
-  <div class="court-details-container">
-    <div class="court-image">
-      <div class="image-wrapper">
-        <img src="img/badminton.png" alt="Badminton Court Image" title="State-of-the-Art Badminton Courts">
-      </div>
-    </div>
-    <div class="court-introduction">
-      <p>Our facility features 8 high-quality badminton courts, designed for both beginners and advanced players. Each court is equipped with professional-grade flooring and lighting, ensuring an optimal playing experience. The spacious layout and well-maintained environment make our courts ideal for both casual games and competitive matches.</p>
-    </div>
-  </div>
-</section>
-
 
 <section id="announcements">
   <h2>Announcements</h2>
@@ -234,23 +301,78 @@
   </div>
 </section>
 
-<section id="court-availability">
-  <h2>Select a Court and Time</h2>
-  <div id="courts">
-    <!-- Dynamically generate court options here -->
+<section id="court-details">
+  <h2>Court Details</h2>
+  <div class="court-details-container">
+    <div class="court-image">
+      <div class="image-wrapper">
+        <!-- Set the image source and alt text for the Badminton Court Image -->
+        <img src="img/Squash.png" alt="Badminton Court Image" title="State-of-the-Art Badminton Courts">
+      </div>
+    </div>
+    <div class="court-introduction">
+      <!-- Set the details for the brief introduction -->
+      <h3>Welcome to Our Badminton Facility</h3>
+      <p>Our facility features 8 high-quality badminton courts, designed for both beginners and advanced players. Each court is equipped with professional-grade flooring and lighting, ensuring an optimal playing experience. The spacious layout and well-maintained environment make our courts ideal for both casual games and competitive matches.</p>
+    </div>
   </div>
-  <div id="time-slots">
-    <!-- Dynamically generate time slots here -->
-  </div>
-  <button id="book-court" disabled>Book Court</button>
 </section>
 
 <section id="booking">
   <h2>Booking</h2>
   <p>Each booking is for 1 hour per person and is limited to 1 court per person. Court bookings are available from 8 am to 8 pm.</p>
-  <!-- Add a booking system here -->
-</section>
 
+  <div id="booking-form">
+    <label for="booking-date">Select Date:</label>
+    <input type="date" id="booking-date" required>
+
+    <label for="booking-time">Select Time:</label>
+    <select id="booking-time" required>
+      <!-- Generate time slots from 8 am to 8 pm with 1-hour intervals -->
+      <!-- You can adjust this based on your specific needs -->
+      <option value="8:00">8 am - 9 am</option>
+      <option value="9:00">9 am - 10 am</option>
+      <option value="10:00">10 am - 11 am</option>
+      <option value="11:00">11 am - 12 pm</option>
+      <option value="12:00">12 noon - 1 pm</option>
+      <option value="13:00">1 pm - 2 pm</option>
+      <option value="14:00">2 pm - 3 pm</option>
+      <option value="15:00">3 pm - 4 pm</option>
+      <option value="16:00">4 pm - 5 pm</option>
+      <option value="17:00">5 pm - 6 pm</option>
+      <option value="18:00">6 pm - 7 pm</option>
+      <option value="19:00">7 pm - 8 pm</option>
+      <!-- Add more options as needed -->
+    </select>
+
+    <label for="sport-type">Select Sport:</label>
+    <select id="sport-type" required>
+      <option value="Badminton">Badminton</option>
+      <option value="Squash">Squash</option>
+      <option value="Tennis">Tennis</option>
+      <!-- Add more sport options as needed -->
+    </select>
+
+    <label for="court-number">Select Court:</label>
+    <select id="court-number" required>
+      <!-- Generate court options -->
+      <!-- You can adjust the number of courts based on your specific facility -->
+      <option value="1">Court 1</option>
+      <option value="2">Court 2</option>
+      <option value="3">Court 3</option>
+      <option value="4">Court 4</option>
+      <option value="5">Court 5</option>
+      <option value="6">Court 6</option>
+      <option value="7">Court 7</option>
+      <option value="8">Court 8</option>
+      <!-- Add more options as needed -->
+    </select>
+
+    <button onclick="bookCourt()">Book Court</button>
+  </div>
+
+  <div id="booking-status"></div>
+</section>
 <section id="rules">
   <h2>Rules & Regulations</h2>
   <ul>
@@ -259,11 +381,21 @@
     <li>Booking cancellations must be made at least 24 hours in advance.</li>
     <!-- Add more rules and regulations as needed -->
   </ul>
+  <div class="rules-image-container">
+    <!-- First image -->
+    <img class="rules-image" src="img/Approved-Footwear.jpg" alt="Rules & Regulations Image 1" title="Rules & Regulations">
+
+    <!-- Second image -->
+    <img class="rules-image" src="img/attires.png" alt="Rules & Regulations Image 2" title="Rules & Regulations">
+  </div>
 </section>
 
 <footer>
-  <p>Contact us for inquiries: [Contact Information]</p>
+  <p>Contact us for inquiries: <a href="mailto:info@example.com">info@example.com</a></p>
+  <p>123 Main Street, Cityville, Country</p>
+  <p>Phone: +1 (555) 123-4567</p>
 </footer>
+
 <script>
   document.addEventListener("DOMContentLoaded", function() {
     let currentIndex = 0;
@@ -315,6 +447,19 @@
   // Initialize the options
   createCourtOptions();
   createTimeSlots();
+
+  function bookCourt() {
+    // This is a placeholder function; you need to implement booking logic here
+    const date = document.getElementById('booking-date').value;
+    const time = document.getElementById('booking-time').value;
+    const sport = document.getElementById('sport-type').value;
+    const court = document.getElementById('court-number').value;
+
+    // Perform actual booking logic here (e.g., send data to the server)
+    // For now, just display a message
+    const bookingStatus = document.getElementById('booking-status');
+    bookingStatus.textContent = `Booking Confirmed: ${date} at ${time}, ${sport}, Court ${court}`;
+  }
 </script>
 </body>
 </html>
