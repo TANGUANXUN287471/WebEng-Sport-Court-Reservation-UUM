@@ -3,8 +3,318 @@
 <head>
   <meta charset="UTF-8">
   <title>BADMINTON COURT RESERVATION</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Add any other stylesheets or scripts here -->
+  <style>
+    /* Reset some default styles */
+    body, h1, h2, h3, p, ul {
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Global styles */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: #0077cc;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* Header styles */
+    header {
+      background-color: #4CAF50; /* Green background color */
+      color: #fff; /* White text color */
+      text-align: center;
+      padding: 20px 0;
+      position: relative;
+      top: 0;
+      z-index: 999;
+      transition: background-color 0.3s;
+    }
+
+    header h1 {
+      font-size: 28px; /* Increase font size for main title */
+      margin-bottom: 10px;
+      font-weight: bold; /* Add bold font for main title */
+    }
+
+    /* Navigation menu styles */
+    nav {
+      background-color: #333; /* Dark background color for the menu */
+      padding: 10px 0;
+      text-align: center;
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    nav a {
+      margin-right: 20px;
+      color: #fff; /* White text color for menu items */
+      text-decoration: none;
+      font-weight: bold;
+      padding: 10px 20px; /* Add padding to menu items */
+      border-radius: 4px; /* Add rounded corners to menu items */
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    nav a:hover {
+      background-color: #4CAF50; /* Green background color on hover */
+      color: #fff; /* White text color on hover */
+    }
+
+    .announcement-container {
+      display: flex;
+      overflow: hidden;
+      width: 100%;
+      position: relative;
+    }
+
+    .announcement {
+      min-width: 100%; /* Each announcement takes full width */
+      transition: transform 0.5s ease-in-out;
+      display: flex;
+      flex-direction: column; /* Align children top to bottom */
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px; /* Add padding for spacing */
+      margin: 10px 0; /* Add margin for separation */
+      border-radius: 10px; /* Rounded corners */
+      background-color: #e6f7ff; /* Light blue background color for all boxes */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    }
+
+    .announcement h3 {
+      font-size: 20px; /* Larger font size for headlines */
+      color: #4CAF50; /* Color for the headline */
+      margin-bottom: 10px; /* Bottom margin for separation */
+    }
+
+    .announcement p {
+      font-size: 16px; /* Adjust font size for readability */
+      color: #333; /* Darker text color for contrast */
+    }
+
+    /* Section styles */
+    section {
+      background-color: #fff; /* White background color for sections */
+      padding: 20px;
+      margin: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    }
+
+    section h2 {
+      font-size: 24px; /* Adjust font size for section titles */
+      margin-bottom: 10px;
+    }
+
+    /* Court Details container */
+    .court-details-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      background-color: #f0f0f0;
+      border-radius: 8px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Court Image styles */
+    .court-image {
+      flex: 1;
+    }
+
+    .image-wrapper {
+      max-width: 100%;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .image-wrapper img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.2s;
+    }
+
+    .image-wrapper img:hover {
+      transform: scale(1.1); /* Add a zoom effect on hover */
+    }
+
+    /* Court Introduction styles */
+    .court-introduction {
+      flex: 2;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .court-introduction p {
+      font-size: 16px;
+      color: #333;
+    }
+
+
+    /* Rules & Regulations styles */
+    ul {
+      list-style-type: disc;
+      margin-left: 20px;
+    }
+
+    /* Footer styles */
+    footer {
+      background-color: #333; /* Dark background color for the footer */
+      color: #fff; /* White text color for the footer */
+      text-align: center;
+      padding: 10px 0;
+    }
+
+  </style>
 </head>
 <body>
-<a>Book your Badminton Court here..., but wait lah still developing</a>
+
+<header>
+  <h1>Badminton Court Reservation</h1>
+</header>
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="#court-details">Court Details</a>
+  <a href="#announcements">Announcements</a>
+  <a href="#court-availability">Court Availability</a>
+  <a href="#booking">Booking</a>
+  <a href="#rules">Rules & Regulations</a>
+</nav>
+
+<section id="court-details">
+  <h2>Court Details</h2>
+  <div class="court-details-container">
+    <div class="court-image">
+      <div class="image-wrapper">
+        <img src="img/badminton.png" alt="Badminton Court Image" title="State-of-the-Art Badminton Courts">
+      </div>
+    </div>
+    <div class="court-introduction">
+      <p>Our facility features 8 high-quality badminton courts, designed for both beginners and advanced players. Each court is equipped with professional-grade flooring and lighting, ensuring an optimal playing experience. The spacious layout and well-maintained environment make our courts ideal for both casual games and competitive matches.</p>
+    </div>
+  </div>
+</section>
+
+
+<section id="announcements">
+  <h2>Announcements</h2>
+  <div class="announcement-container">
+    <div class="announcement">
+      <h3>Badminton Tournament</h3>
+      <p>We are hosting a Badminton Tournament on 31 December 2023. Register now to participate!</p>
+    </div>
+    <div class="announcement">
+      <h3>Court Maintenance</h3>
+      <p>Important maintenance work will be conducted on 21 January 2024. Some courts may be unavailable during this time.</p>
+    </div>
+    <div class="announcement">
+      <h3>Friendly Match</h3>
+      <p>On 21 January 2024, A Friendly Match among the campus inasis will be organize and conducted. Register now to participate!</p>
+    </div>
+    <div class="announcement">
+      <h3>Public Holiday</h3>
+      <p>Merry Christmas!!! Our badminton court will be closed on 25 December 2023 as public holiday.</p>
+    </div>
+  </div>
+</section>
+
+<section id="court-availability">
+  <h2>Select a Court and Time</h2>
+  <div id="courts">
+    <!-- Dynamically generate court options here -->
+  </div>
+  <div id="time-slots">
+    <!-- Dynamically generate time slots here -->
+  </div>
+  <button id="book-court" disabled>Book Court</button>
+</section>
+
+<section id="booking">
+  <h2>Booking</h2>
+  <p>Each booking is for 1 hour per person and is limited to 1 court per person. Court bookings are available from 8 am to 8 pm.</p>
+  <!-- Add a booking system here -->
+</section>
+
+<section id="rules">
+  <h2>Rules & Regulations</h2>
+  <ul>
+    <li>Proper attire and non-marking shoes are required on the courts.</li>
+    <li>Respect other players and follow court etiquette.</li>
+    <li>Booking cancellations must be made at least 24 hours in advance.</li>
+    <!-- Add more rules and regulations as needed -->
+  </ul>
+</section>
+
+<footer>
+  <p>Contact us for inquiries: [Contact Information]</p>
+</footer>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    let currentIndex = 0;
+    const announcements = document.querySelectorAll('.announcement');
+    const totalAnnouncements = announcements.length;
+
+    function changeAnnouncement() {
+      const nextIndex = (currentIndex + 1) % totalAnnouncements;
+      announcements[currentIndex].style.transform = `translateX(-${100 * nextIndex}%)`;
+      announcements[nextIndex].style.transform = `translateX(-${100 * nextIndex}%)`;
+      currentIndex = nextIndex;
+    }
+
+    setInterval(changeAnnouncement, 5000); // Change announcement every 5 seconds
+  });
+  // Example JavaScript to dynamically create court and time options
+  const courtsContainer = document.getElementById('courts');
+  const timeSlotsContainer = document.getElementById('time-slots');
+  const bookButton = document.getElementById('book-court');
+
+  function createCourtOptions() {
+    for (let i = 1; i <= 8; i++) {
+      const courtOption = document.createElement('button');
+      courtOption.textContent = `Court ${i}`;
+      courtOption.onclick = () => selectCourt(i);
+      courtsContainer.appendChild(courtOption);
+    }
+  }
+
+  function createTimeSlots() {
+    for (let hour = 8; hour <= 20; hour++) { // 8 AM to 8 PM
+      const timeSlot = document.createElement('button');
+      timeSlot.textContent = `${hour}:00`;
+      timeSlot.onclick = () => selectTimeSlot(hour);
+      timeSlotsContainer.appendChild(timeSlot);
+    }
+  }
+
+  function selectCourt(courtNumber) {
+    console.log(`Court ${courtNumber} selected`);
+    // Update selection and booking button state
+  }
+
+  function selectTimeSlot(time) {
+    console.log(`Time ${time}:00 selected`);
+    // Update selection and booking button state
+  }
+
+  // Initialize the options
+  createCourtOptions();
+  createTimeSlots();
+</script>
 </body>
 </html>

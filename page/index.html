@@ -91,16 +91,133 @@
       border-radius: 8px; /* Optional: Adds rounded corners to the images */
     }
 
+    /* Styles for the "join-game" section */
     .join-game {
       background-color: #f2f2f2;
       padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      overflow-x: scroll; /* Enable horizontal scrolling */
+      white-space: nowrap; /* Prevent line breaks */
     }
+
+    .join-game h2 {
+      font-size: 24px;
+      margin-bottom: 12px;
+    }
+
+    /* Styles for game options */
+    .game-options {
+      display: flex; /* Display game options in a row */
+      gap: 20px; /* Add space between game options */
+      white-space: nowrap; /* Prevent line breaks for game options */
+      overflow-x: auto; /* Enable horizontal scrolling for game options */
+    }
+
+    .game-option {
+      background-color: white;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      width: 300px; /* Adjust the width of each option */
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+      overflow: hidden; /* Hide content overflow */
+      text-align: center;
+      transition: transform 0.3s ease; /* Add a hover effect */
+    }
+
+    .game-option:hover {
+      transform: scale(1.05); /* Enlarge on hover */
+    }
+
+    .game-option h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
+      white-space: normal; /* Allow text to wrap within h3 */
+    }
+
+    .game-option p {
+      font-size: 16px;
+      margin-bottom: 15px;
+      white-space: normal; /* Allow text to wrap within p */
+    }
+
+    .game-option .btn {
+      text-decoration: none;
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 4px;
+      display: inline-block;
+      transition: background-color 0.3s;
+    }
+
+    .game-option .btn:hover {
+      background-color: #45a049; /* Darker green on hover */
+    }
+
     .footer {
       background-color: #333;
       color: white;
       text-align: center;
       padding: 10px;
     }
+
+    /* Styles for the announcement board */
+    .announcement-board {
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      margin: 20px auto;
+      padding: 15px;
+      max-height: 150px; /* Set a suitable height */
+      overflow: hidden; /* Hide the scrollbar */
+      width: 80%;
+      position: relative;
+      border-radius: 8px; /* Rounded corners for the board */
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+      display: flex; /* Use flexbox for centering */
+      align-items: center; /* Center vertically */
+      justify-content: center; /* Center horizontally */
+    }
+
+    /* Styles for the announcement container */
+    .announcement-container {
+      white-space: nowrap;
+      overflow: hidden; /* Hide overflowing content */
+    }
+
+    /* Keyframes for the auto-slide animation */
+    @keyframes slide {
+      0% {
+        transform: translateX(100%);
+      }
+      100% {
+        transform: translateX(-100%);
+      }
+    }
+
+    /* Styles for individual announcement items */
+    .announcement-item {
+      padding: 5px 10px;
+      font-size: 16px;
+      color: #333;
+      font-weight: bold;
+      white-space: nowrap; /* Prevent text from wrapping */
+      text-overflow: ellipsis; /* Show ellipsis (...) for overflow */
+      opacity: 0; /* Initially hide the announcements */
+      animation: fadeIn 1s linear forwards; /* Fade-in animation */
+    }
+
+    /* Keyframes for the fade-in animation */
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
   </style>
 </head>
 
@@ -118,10 +235,21 @@
   <h1>BOOK YOUR SPORT COURT ONLINE</h1>
 </div>
 
+<div class="announcement-board">
+  <div class="announcement-container">
+    <div class="announcement-item">Announcement 1: Welcome to our UUM Sport Court Reservation System!</div>
+    <div class="announcement-item">Announcement 2: Check out the latest court availability online.</div>
+    <div class="announcement-item">Announcement 3: Join our upcoming badminton tournament.</div>
+    <div class="announcement-item">Announcement 4: UUM Sports Centre's operation hours are from 8:00 a.m. until 8:00 p.m.</div>
+    <div class="announcement-item">Announcement 5: UUM Sports Centre's operation days from Sunday to Friday</div>
+    <!-- Add more announcements here -->
+  </div>
+</div>
+
 <div class="court-list">
   <div class="court-item">
     <a href="badmintoncourt_page.html">
-      <img src="../img/badminton.png" alt="Badminton Court">
+      <img src="img/badminton.png" alt="Badminton Court">
       <p>Badminton</p>
     </a>
   </div>
@@ -141,8 +269,26 @@
 
 <div class="join-game">
   <h2>Join game with others!</h2>
-  <!-- Add game joining options here -->
+  <div class="game-options">
+    <div class="game-option">
+      <h3>Badminton Tournament</h3>
+      <p>Join our exciting Badminton Tournament and compete with others.</p>
+      <a href="#" class="btn">Join Now</a>
+    </div>
+    <div class="game-option">
+      <h3>Tennis Doubles</h3>
+      <p>Team up with a partner and play in our Tennis Doubles event.</p>
+      <a href="#" class="btn">Join Now</a>
+    </div>
+    <div class="game-option">
+      <h3>Squash Challenge</h3>
+      <p>Take on the Squash Challenge and show off your skills.</p>
+      <a href="#" class="btn">Join Now</a>
+    </div>
+    <!-- Add more game options here -->
+  </div>
 </div>
+
 
 <div class="footer">
   <p>Contact information and social media links</p>
@@ -156,6 +302,42 @@
   <script>
     window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
     ga('create', 'UA-XXXXX-Y', 'auto'); ga('set', 'anonymizeIp', true); ga('set', 'transport', 'beacon'); ga('send', 'pageview')
+    function createAnnouncement(text) {
+      const announcement = document.createElement('div');
+      announcement.className = 'announcement-item';
+      announcement.textContent = text;
+      return announcement;
+    }
+
+    function setupAnnouncements() {
+      const announcements = [
+        'Welcome to our UUM Sport Court Reservation System!',
+        'Check out the latest court availability online.',
+        'Join our upcoming badminton tournament.',
+        'UUM Sports Centre\'s operation hours are from 8:00 a.m. until 8:00 p.m.',
+        'UUM Sports Centre\'s operation days from Sunday to Friday'
+        // Add more announcements here
+      ];
+
+      const announcementContainer = document.querySelector('.announcement-container');
+      let currentIndex = 0;
+
+      function displayAnnouncement(index) {
+        announcementContainer.innerHTML = '';
+        announcementContainer.appendChild(createAnnouncement(announcements[index]));
+      }
+
+      function switchAnnouncement() {
+        displayAnnouncement(currentIndex);
+        currentIndex = (currentIndex + 1) % announcements.length;
+      }
+
+      switchAnnouncement(); // Initial display
+
+      setInterval(switchAnnouncement, 5000); // Switch to the next announcement every 5 seconds
+    }
+
+    document.addEventListener('DOMContentLoaded', setupAnnouncements);
   </script>
   <script src="https://www.google-analytics.com/analytics.js" async></script>
 </body>
