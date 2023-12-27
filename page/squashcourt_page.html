@@ -283,6 +283,47 @@
       border-radius: 8px;
       box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     }
+
+    .availability-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    .availability-table th, .availability-table td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: center;
+    }
+
+    .availability-table th {
+      background-color: #f2f2f2;
+    }
+
+    /* New styles for availability status */
+    .available {
+      background-color: #a5d6a7; /* Light green for available */
+      color: #00796b; /* Dark green text */
+    }
+
+    .occupied {
+      background-color: #ef9a9a; /* Light red for occupied */
+      color: #c62828; /* Dark red text */
+    }
+    /* Adjusted styles for the availability container, form, and timetable */
+    .availability-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start; /* Align items at the top */
+    }
+
+    .availability-form {
+      width: 45%; /* Adjust the width as needed */
+    }
+
+    .availability-status {
+      width: 45%; /* Adjust the width as needed */
+    }
   </style>
 </head>
 <body>
@@ -295,6 +336,7 @@
   <a href="index.html">Home</a>
   <a href="#court-details">Court Details</a>
   <a href="#announcements">Announcements</a>
+  <a href="#check-availability">Check Availability</a>
   <a href="#booking">Booking</a>
   <a href="#rules">Rules & Regulations</a>
 </nav>
@@ -336,6 +378,49 @@
       <p class="introduction-text">Experience the thrill of squash in our state-of-the-art facility. Our squash courts are designed for players of all levels, providing a dynamic and engaging environment for both casual games and competitive matches.</p>
       <p class="introduction-text">Featuring modern amenities and professional-grade infrastructure, our courts ensure an optimal playing experience. Whether you are a seasoned player or just starting, our squash facility is equipped to meet your needs.</p>
       <p class="introduction-text">Join us and immerse yourself in the fast-paced action and strategic gameplay of squash. Elevate your game, stay active, and enjoy the camaraderie of fellow enthusiasts in our vibrant squash community.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Add this section to your existing HTML file -->
+<section id="check-availability">
+  <h2>Check Court Availability</h2>
+  <!-- Add the new container for the form and timetable with adjusted styles -->
+  <div id="availability-container" class="availability-container">
+    <!-- Check Availability Form with adjusted width -->
+    <div id="availability-form" class="availability-form">
+      <label for="check-sport">Select Sport:</label>
+      <select id="check-sport" required>
+        <option value="Badminton">Badminton</option>
+        <option value="Squash">Squash</option>
+        <option value="Tennis">Tennis</option>
+        <!-- Add more sport options as needed -->
+      </select>
+
+      <label for="check-court-number">Select Court:</label>
+      <select id="check-court-number" required>
+        <!-- Generate court options -->
+        <!-- You can adjust the number of courts based on your specific facility -->
+        <option value="1">Court 1</option>
+        <option value="2">Court 2</option>
+        <option value="3">Court 3</option>
+        <option value="4">Court 4</option>
+        <option value="5">Court 5</option>
+        <option value="6">Court 6</option>
+        <option value="7">Court 7</option>
+        <option value="8">Court 8</option>
+        <!-- Add more options as needed -->
+      </select>
+
+      <label for="check-date">Select Date:</label>
+      <input type="date" id="check-date" required>
+
+      <button onclick="checkAvailability()">Check Availability</button>
+    </div>
+
+    <!-- Availability Timetable with adjusted width -->
+    <div id="availability-status" class="availability-status">
+      <!-- Timetable will be dynamically generated here -->
     </div>
   </div>
 </section>
@@ -471,17 +556,117 @@
   createCourtOptions();
   createTimeSlots();
 
+  function checkAvailability() {
+    const sport = document.getElementById('check-sport').value;
+    const courtNumber = document.getElementById('check-court-number').value;
+    const date = document.getElementById('check-date').value;
+
+    // Send an AJAX request to check availability
+    const xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+        if (xhr.status === 200) {
+          const response = JSON.parse(xhr.responseText);
+          displayAvailability(response);
+        } else {
+          console.error("Error checking availability: " + xhr.status);
+        }
+      }
+    };
+
+    xhr.open('POST', 'php/check_court_availability.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.send(`sport=${sport}&courtNumber=${courtNumber}&date=${date}`);
+  }
+
+  function displayAvailability(response) {
+    const availabilityStatus = document.getElementById('availability-status');
+    availabilityStatus.innerHTML = ""; // Clear previous status
+
+    // Generate a timetable to display availability
+    const timetable = document.createElement('table');
+    timetable.classList.add('availability-table');
+
+    // Create table header
+    const headerRow = document.createElement('tr');
+    const headerCellTime = document.createElement('th');
+    headerCellTime.textContent = 'Time';
+    headerRow.appendChild(headerCellTime);
+
+    const headerCellStatus = document.createElement('th');
+    headerCellStatus.textContent = 'Availability';
+    headerRow.appendChild(headerCellStatus);
+
+    timetable.appendChild(headerRow);
+
+    // Create table rows
+    for (const slot of response) {
+      const row = document.createElement('tr');
+
+      const timeCell = document.createElement('td');
+      timeCell.textContent = slot.startTime + ' - ' + slot.endTime;
+      row.appendChild(timeCell);
+
+      const statusCell = document.createElement('td');
+      statusCell.textContent = slot.available ? 'Available' : 'Occupied';
+      statusCell.classList.add(slot.available ? 'available' : 'occupied');
+      row.appendChild(statusCell);
+
+      timetable.appendChild(row);
+    }
+
+    availabilityStatus.appendChild(timetable);
+  }
+
   function bookCourt() {
-    // This is a placeholder function; you need to implement booking logic here
     const date = document.getElementById('booking-date').value;
     const time = document.getElementById('booking-time').value;
     const sport = document.getElementById('sport-type').value;
     const court = document.getElementById('court-number').value;
 
-    // Perform actual booking logic here (e.g., send data to the server)
-    // For now, just display a message
-    const bookingStatus = document.getElementById('booking-status');
-    bookingStatus.textContent = `Booking Confirmed: ${date} at ${time}, ${sport}, Court ${court}`;
+    // Send an AJAX request to check availability
+    const availabilityXhr = new XMLHttpRequest();
+    availabilityXhr.onreadystatechange = function () {
+      if (availabilityXhr.readyState === XMLHttpRequest.DONE) {
+        if (availabilityXhr.status === 200) {
+          const response = JSON.parse(availabilityXhr.responseText);
+          if (response.available) {
+            // If the slot is available, proceed with the booking
+            // Create a FormData object and append form data
+            const formData = new FormData();
+            formData.append("booking-date", date);
+            formData.append("booking-time", time);
+            formData.append("sport-type", sport);
+            formData.append("court-number", court);
+
+            // Send an AJAX request to process the booking
+            const bookingXhr = new XMLHttpRequest();
+            bookingXhr.open("POST", "php/process_booking.php", true);
+            bookingXhr.onload = function () {
+              if (bookingXhr.status === 200) {
+                // Handle the successful response
+                const bookingStatus = document.getElementById('booking-status');
+                bookingStatus.textContent = bookingXhr.responseText;
+              } else {
+                // Handle errors
+                alert("Error: " + bookingXhr.statusText);
+              }
+            };
+            bookingXhr.send(formData);
+          } else {
+            // Display a message indicating the slot is not available
+            const bookingStatus = document.getElementById('booking-status');
+            bookingStatus.textContent = "Error: Slot already booked. Please choose another time or court.";
+          }
+        } else {
+          console.error("Error checking availability: " + availabilityXhr.status);
+        }
+      }
+    };
+
+    availabilityXhr.open('POST', 'php/check_availability.php', true);
+    availabilityXhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    availabilityXhr.send(`date=${date}&time=${time}&sport=${sport}&court=${court}`);
   }
 </script>
 </body>
