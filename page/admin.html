@@ -4,97 +4,91 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sign Up</title>
+  <title>Admin Page</title>
+  <!-- Add Bootstrap CSS link here -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: Arial, sans-serif;
-      background: url('../img/register.jpeg');
-      margin: 0;
-    }
-
-    .navbar {
-      background-color: white;
-      overflow: hidden;
-      padding: 15px;
-      text-align: center;
-      color: #ffcc00;
-    }
-
-    .navbar h1 {
-      margin: 0;
-    }
-
-    .container {
-      max-width: 400px;
-      margin: 20px auto; /* Updated margin for spacing below the navbar */
-      padding: 20px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-      background: white;
-    }
-
-    input[type="text"],
-    input[type="email"],
-    input[type="password"] {
-      width: 100%;
-      padding: 12px 20px;
-      margin: 8px 0;
-      display: inline-block;
-      border: 1px solid #ccc;
-      box-sizing: border-box;
-    }
-
-    button {
-      background-color: #ffcc00;
-      color: white;
-      padding: 14px 20px;
-      margin: 8px 0;
-      border: none;
-      cursor: pointer;
-      width: 100%;
-    }
-
-    button:hover {
-      opacity: 0.8;
-    }
-
-    .form-footer {
+    /* Add your custom styles here */
+    .reservation-table {
       margin-top: 20px;
-      text-align: center;
     }
 
-    .form-footer a {
-      text-decoration: none;
-      color: #666;
+    /* Optional: Adjust the styling based on your preference */
+    body {
+      padding: 20px;
+    }
+
+    .btn-view {
+      margin-top: 10px;
     }
   </style>
 </head>
 
 <body>
-<div class="navbar">
-  <h1>Court Reservation System</h1>
-</div>
 
 <div class="container">
-  <h1>Sign Up</h1>
-  <form action="../php/user_create.php" method="post">
-    <input type="text" name="user_matricNum" placeholder="Enter your matric number">
-    <input type="text" name="user_name" placeholder="Enter your Full name">
-    <input type="email" name="user_email" placeholder="Enter your email address">
-    <input type="text" name="user_phone" placeholder="Enter your phone number">
-    <input type="password" name="user_password" placeholder="Create a password">
-    <input type="password" name="confirm_password" placeholder="Confirm password">
-    <button type="submit">Sign up</button>
+  <h2 class="mt-3 mb-3">Admin Page</h2>
+
+  <form id="reservationForm">
+    <div class="form-row align-items-center">
+      <div class="col-auto">
+        <label for="viewDate" class="sr-only">Select Date:</label>
+        <input type="date" id="viewDate" name="view_date" class="form-control" required>
+      </div>
+
+      <div class="col-auto">
+        <label for="sportType" class="sr-only">Select Sport Type:</label>
+        <select id="sportType" name="sport_type" class="form-control" required>
+          <option value="Badminton">Badminton</option>
+          <option value="Squash">Squash</option>
+          <option value="Tennis">Tennis</option>
+        </select>
+      </div>
+
+      <div class="col-auto">
+        <button type="button" class="btn btn-primary btn-view" onclick="viewReservations()">View Reservations</button>
+      </div>
+    </div>
   </form>
-  <div class="form-footer">
-    <p>Already have an account? <a href="login_page.html">Log in</a></p>
+
+  <div id="reservationTable" class="reservation-table">
+    <!-- Reservation table will be displayed here -->
   </div>
 </div>
+
+<!-- Add Bootstrap JS and Popper.js scripts here -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.8/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+  function viewReservations() {
+    // Get form data
+    var formData = new FormData(document.getElementById("reservationForm"));
+
+    // Send AJAX request to view_reservations.php
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "../page/php/view_reservations.php", true);
+
+    // Set up a callback function to handle the response
+    xhr.onload = function () {
+      if (xhr.status === 200) {
+        document.getElementById("reservationTable").innerHTML = xhr.responseText;
+      } else {
+        console.error("Request failed. Status: " + xhr.status);
+      }
+    };
+
+    // Set up a callback function to handle network errors
+    xhr.onerror = function () {
+      console.error("Network error occurred");
+    };
+
+    // Send the request
+    xhr.send(formData);
+  }
+</script>
+
 </body>
 
 </html>

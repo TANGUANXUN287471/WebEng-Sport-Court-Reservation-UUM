@@ -449,17 +449,56 @@
   createTimeSlots();
 
   function bookCourt() {
-    // This is a placeholder function; you need to implement booking logic here
     const date = document.getElementById('booking-date').value;
     const time = document.getElementById('booking-time').value;
     const sport = document.getElementById('sport-type').value;
     const court = document.getElementById('court-number').value;
 
-    // Perform actual booking logic here (e.g., send data to the server)
-    // For now, just display a message
-    const bookingStatus = document.getElementById('booking-status');
-    bookingStatus.textContent = `Booking Confirmed: ${date} at ${time}, ${sport}, Court ${court}`;
+    // Send an AJAX request to check availability
+    const availabilityXhr = new XMLHttpRequest();
+    availabilityXhr.onreadystatechange = function () {
+      if (availabilityXhr.readyState === XMLHttpRequest.DONE) {
+        if (availabilityXhr.status === 200) {
+          const response = JSON.parse(availabilityXhr.responseText);
+          if (response.available) {
+            // If the slot is available, proceed with the booking
+            // Create a FormData object and append form data
+            const formData = new FormData();
+            formData.append("booking-date", date);
+            formData.append("booking-time", time);
+            formData.append("sport-type", sport);
+            formData.append("court-number", court);
+
+            // Send an AJAX request to process the booking
+            const bookingXhr = new XMLHttpRequest();
+            bookingXhr.open("POST", "php/process_booking.php", true);
+            bookingXhr.onload = function () {
+              if (bookingXhr.status === 200) {
+                // Handle the successful response
+                const bookingStatus = document.getElementById('booking-status');
+                bookingStatus.textContent = bookingXhr.responseText;
+              } else {
+                // Handle errors
+                alert("Error: " + bookingXhr.statusText);
+              }
+            };
+            bookingXhr.send(formData);
+          } else {
+            // Display a message indicating the slot is not available
+            const bookingStatus = document.getElementById('booking-status');
+            bookingStatus.textContent = "Error: Slot already booked. Please choose another time or court.";
+          }
+        } else {
+          console.error("Error checking availability: " + availabilityXhr.status);
+        }
+      }
+    };
+
+    availabilityXhr.open('POST', 'php/check_availability.php', true);
+    availabilityXhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    availabilityXhr.send(`date=${date}&time=${time}&sport=${sport}&court=${court}`);
   }
+
 </script>
 </body>
 </html>
