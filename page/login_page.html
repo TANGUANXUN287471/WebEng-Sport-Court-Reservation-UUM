@@ -1,47 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login - Sports Court Reservation</title>
+  <title>Court Reservation System</title>
   <style>
     * {
       box-sizing: border-box;
-    }
-    body, html {
-      height: 100%;
       margin: 0;
-      font-family: Arial, sans-serif;
+      padding: 0;
     }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: url('../page/img/register.jpeg');
+      margin: 0;
+    }
+
+    .navbar {
+      background-color: white;
+      overflow: hidden;
+      padding: 15px;
+      text-align: center;
+      color: #ffcc00;
+    }
+
     .login-container {
       display: flex;
-      height: 100vh;
+      justify-content: center;
+      align-items: center;
+      height: 100vh; /* Make sure the container takes the full height of the viewport */
     }
+
     .login-image {
       flex: 1;
-      background: url('img/pusatsukan.png') no-repeat center center;
+      background: url('.../img/pusatsukan.png') no-repeat center center;
       background-size: cover;
     }
+
     .login-form-container {
       flex: 1;
       padding: 50px;
       display: flex;
       flex-direction: column;
       justify-content: center;
+      align-items: center; /* Center the container horizontally */
+      background: white;
+      max-width: 400px;
+      margin: auto;
     }
+
     .login-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
       max-width: 300px;
       margin: auto;
     }
-    input[type=text], input[type=password] {
+
+    input[type=text],
+    input[type=password] {
       width: 100%;
       padding: 15px;
       margin: 10px 0;
       border: 1px solid #ccc;
       box-sizing: border-box;
     }
+
     .login-btn {
-      background-color: #ffcc00; /* Yellow background color */
+      background-color: #ffcc00;
       color: white;
       padding: 14px 20px;
       margin: 10px 0;
@@ -49,35 +78,45 @@
       cursor: pointer;
       width: 100%;
     }
+
     .login-btn:hover {
       opacity: 0.8;
     }
+
     .form-footer {
       color: #777;
       text-align: center;
     }
+
     .form-footer a {
-      color: #ffcc00; /* Yellow color to match the button */
+      color: #ffcc00;
       text-decoration: none;
     }
+
     .checkbox-container {
       margin-bottom: 15px;
     }
+
     .checkbox {
       margin-right: 10px;
     }
   </style>
 </head>
+
 <body>
+
+<div class="navbar">
+  <h1>Court Reservation System</h1>
+</div>
 
 <div class="login-container">
   <div class="login-image"></div>
   <div class="login-form-container">
-    <form class="login-form">
+    <form class="login-form" action= "php/login_check.php" method="post">
       <h2>Log in</h2>
       <p>Sign in to book sports courts and join games</p>
-      <label for="username">Enter your username</label>
-      <input type="text" id="username" name="username" required>
+      <label for="user_id">Enter your user id</label>
+      <input type="text" id="user_id" name="user_id" required>
 
       <label for="password">Enter your password</label>
       <input type="password" id="password" name="password" required>
@@ -90,12 +129,12 @@
       <button type="submit" class="login-btn">Log in</button>
 
       <div class="form-footer">
-        <a href="#">Forgot your password?</a><br>
-        Don't have an account yet? <a href="signup_page.html">Sign up</a>
+        <p>Forgot Password? <a href="#">Click here</a></p>
       </div>
     </form>
   </div>
 </div>
 
 </body>
+
 </html>
