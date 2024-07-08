@@ -4,6 +4,8 @@
 
 The Sport Court Reservation System for Universiti Utara Malaysia (UUM) is designed to streamline the process of booking sports courts, making it easier for students to find and reserve courts that fit their schedules. This system also aims to reduce the workload of staff involved in managing reservations manually. The system currently supports the reservation of badminton courts, tennis courts, and squash courts. It offers distinct functionalities for users and administrators to ensure efficient management and user experience.
 
+![image](image.png)
+
 ## Project Structure
 
 ### User Functions
