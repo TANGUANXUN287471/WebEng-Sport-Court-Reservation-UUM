@@ -78,5 +78,4 @@ The Sport Court Reservation System for Universiti Utara Malaysia (UUM) is design
 
 - **Tools:**
     - Git for version control.
-    - Postman for API testing.
-    - Heroku for deployment.
+    - API testing.
